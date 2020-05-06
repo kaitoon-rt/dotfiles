@@ -91,9 +91,37 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+#alias ll='ls -alF'
+#alias la='ls -A'
+#alias l='ls -CF'
+
+alias less='less -r'
+alias ls='ls -F --color --show-control-chars'
+alias ll='ls -l'
+alias gs='git status '
+alias gss='git status -s'
+alias gp='git pull -r'
+alias gh='git push '
+alias gho='git push -u origin '
+alias up='git push '
+alias upo='git push -u origin '
+alias ga='git add '
+alias gaa='git add -A'
+alias gb='git branch '
+alias gc='git commit '
+alias gcm='git commit -m '
+alias gd='git diff'
+alias go='git checkout '
+alias gob='git checkout -b'
+alias gk='gitk --all&'
+alias gx='gitx --all'
+alias got='git '
+alias get='git '
+alias g='git '
+alias gm='git merge '
+alias gr='git reset '
+alias gdf='git clean -f'
+
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
