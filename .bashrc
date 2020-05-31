@@ -149,3 +149,64 @@ if ! shopt -oq posix; then
 fi
 
 #[ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+
+
+# conda3
+#export PATH="/mnt/host/c/tools/miniconda3/Scripts/:$PATH"
+export PATH="/home/rapolt/miniconda3/Scripts/:$PATH"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/rapolt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/rapolt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/rapolt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/rapolt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export TERM=xterm-256color
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export SPOTIFY_CLIENT_ID=3db2149e98b74e0cbe6834a96775ffaa
+export SPOTIFY_SECRET=31b2d21dc8e74112a8c287fd2ec4768e
+
+export PATH="/mnt/c/Windows/System32/:$PATH"
+export BROWSER=wslview
+
+function _conda_auto_activate() {
+  if [ -e ".condaauto" ]; then
+    echo ".condaauto file found"
+    ENV=$(head -n 1 .condaauto)
+
+    # Check to see if already activated to avoid redundant activating
+    if [[ $PATH == *"$ENV"* ]]; then
+      echo "Conda env '$ENV' already activated."
+    else
+      conda activate $ENV
+    fi
+  fi
+}
+
+function chpwd() {
+  echo "changiong pwd"
+  _conda_auto_activate
+}
+
+cd() {
+   builtin cd "$1"
+   if [ -e ".conda_auto" ]; then
+     CONDA_ENV=$(head -n 1 .conda_auto)
+     if [[ $PATH != *"$CONDA_ENV"* ]]; then
+       conda activate $CONDA_ENV
+     fi
+   fi
+}
