@@ -176,11 +176,26 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export SPOTIFY_CLIENT_ID=3db2149e98b74e0cbe6834a96775ffaa
-export SPOTIFY_SECRET=31b2d21dc8e74112a8c287fd2ec4768e
-
 export PATH="/mnt/c/Windows/System32/:$PATH"
 export BROWSER=wslview
+
+export FZF_DEFAULT_OPTS="
+--layout=reverse
+--info=inline
+--height=60%
+--border
+--margin=10%,5%
+--multi
+--preview '([[ -f {} ]] && (bat --style=numbers --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
+--color fg:255,hl:84,fg+:255,bg+:236,hl+:215
+--color info:141,prompt:84,spinner:212,pointer:212,marker:212
+--prompt='∼ ' --pointer='▶' --marker='✓'
+"
+
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+fi
+
 
 function _conda_auto_activate() {
   if [ -e ".condaauto" ]; then
@@ -201,6 +216,8 @@ function chpwd() {
   _conda_auto_activate
 }
 
+export WSL_INTEROP="/run/WSL/$(pstree -np -s | grep wsl | grep -o -E '[0-9]+' | sed -n 2p)_interop"
+
 cd() {
    builtin cd "$1"
    if [ -e ".conda_auto" ]; then
@@ -208,5 +225,9 @@ cd() {
      if [[ $PATH != *"$CONDA_ENV"* ]]; then
        conda activate $CONDA_ENV
      fi
+   else
+     conda activate base
    fi
 }
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
