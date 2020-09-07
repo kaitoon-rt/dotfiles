@@ -22,6 +22,8 @@ Plug 'terryma/vim-expand-region'
 Plug 'machakann/vim-highlightedyank'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-commentary'
+Plug 'kien/rainbow_parentheses.vim'
 call plug#end() 
 
 
@@ -63,7 +65,8 @@ nnoremap <SPACE> <Nop>
 let mapleader=" "
 nmap <silent> <leader><Tab> :TagbarOpen cfj<CR>
 nmap <silent> <leader>l :Limelight<CR>
-nmap <silent> <leader>y :Goyo<CR>
+nmap <silent> <leader>G :Goyo<CR>
+map <silent> / :Commentary<cr>
 map <leader>w <Plug>(expand_region_expand)
 
 map <leader><leader><leader><leader> <Plug>(easymotion-prefix)
@@ -138,4 +141,12 @@ augroup limelight.goyo.*
     autocmd!
     au BufEnter * Limelight
 augroup END
+"""
+
+""" Rainbow Parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+au Syntax * RainbowParenthesesLoadChevrons
 """
