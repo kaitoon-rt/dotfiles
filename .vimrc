@@ -24,6 +24,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'kshenoy/vim-signature'
+Plug 'yuttie/comfortable-motion.vim'
 call plug#end() 
 
 
@@ -70,16 +72,25 @@ map <silent> / :Commentary<cr>
 map <leader>w <Plug>(expand_region_expand)
 
 map <leader><leader><leader><leader> <Plug>(easymotion-prefix)
-nmap f <Plug>(easymotion-overwin-f2)
+nmap <leader>f <Plug>(easymotion-overwin-f2)
+
+let g:comfortable_motion_no_default_key_mappings = 1
+set mouse=a
+noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(80)<CR>
+noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-80)<CR>
+nnoremap <silent> <PageUp> :call comfortable_motion#flick(-150)<CR>
+nnoremap <silent> <PageDown> :call comfortable_motion#flick(150)<CR>
 
 nnoremap <silent> <C-f> :BLines<CR>
-nnoremap <silent> <leader>f :Files<CR>
-nnoremap <silent> <leader>F :Files ~<CR>
+nnoremap <silent> <leader>o :Files<CR>
+nnoremap <silent> <leader>O :Files ~<CR>
 nnoremap <silent> <leader>t :Buffers<CR>
+nnoremap <silent> <leader>g :Marks<CR>
 
 nnoremap <silent> <leader>C :%y<CR>
 
-nnoremap <silent> <leader>c :tabe<CR>
+nnoremap <silent> <C-t> :tabe<CR>
+nnoremap <silent> <C-w> :tabclose<CR>
 nnoremap <silent> <leader>1 1gt
 nnoremap <silent> <leader>2 2gt
 nnoremap <silent> <leader>3 3gt
