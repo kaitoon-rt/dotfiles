@@ -95,7 +95,7 @@ map <silent> / :Commentary<cr>
 map <leader>w <Plug>(expand_region_expand)
 
 map <leader><leader><leader><leader> <Plug>(easymotion-prefix)
-nmap <leader>f <Plujg>(easymotion-overwin-f2)
+nmap <leader>f <Plug>(easymotion-overwin-f2)
 
 let g:comfortable_motion_no_default_key_mappings = 1
 nnoremap <silent> <PageUp> :call comfortable_motion#flick(-150)<CR>
