@@ -65,6 +65,29 @@ let g:expand_region_text_objects = {
 
 nnoremap <SPACE> <Nop>
 let mapleader=" "
+nmap <silent> <leader>i :split<CR>
+nmap <silent> <leader>k :split<CR>
+nmap <silent> <leader>j :vertical split<CR>
+nmap <silent> <leader>l :vertical split<CR>
+nmap <silent> <leader>I :wincmd k<CR>
+nmap <silent> <leader>K :wincmd j<CR>
+nmap <silent> <leader>J :wincmd h<CR>
+nmap <silent> <leader>L :wincmd l<CR>
+
+nmap h <insert>
+nmap i <Up>
+nmap I <PageUp>
+nmap j <Left>
+nmap J :tabprevious<CR>
+nmap k <Down>
+nmap K <PageDown>
+nmap L :tabnext<CR>
+
+nmap <silent> <C-i> :res +1<CR>
+nmap <silent> <C-j> :vertical resize -1<CR>
+nmap <silent> <C-k> :res -1<CR>
+nmap <silent> <C-l> :vertical resize +1<CR>
+
 nmap <silent> <leader><Tab> :TagbarOpen cfj<CR>
 nmap <silent> <leader>l :Limelight<CR>
 nmap <silent> <leader>G :Goyo<CR>
@@ -72,12 +95,9 @@ map <silent> / :Commentary<cr>
 map <leader>w <Plug>(expand_region_expand)
 
 map <leader><leader><leader><leader> <Plug>(easymotion-prefix)
-nmap <leader>f <Plug>(easymotion-overwin-f2)
+nmap <leader>f <Plujg>(easymotion-overwin-f2)
 
 let g:comfortable_motion_no_default_key_mappings = 1
-set mouse=a
-noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(80)<CR>
-noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-80)<CR>
 nnoremap <silent> <PageUp> :call comfortable_motion#flick(-150)<CR>
 nnoremap <silent> <PageDown> :call comfortable_motion#flick(150)<CR>
 
@@ -90,7 +110,7 @@ nnoremap <silent> <leader>g :Marks<CR>
 nnoremap <silent> <leader>C :%y<CR>
 
 nnoremap <silent> <C-t> :tabe<CR>
-nnoremap <silent> <C-w> :tabclose<CR>
+" nnoremap <silent> <C-w> :tabclose<CR>
 nnoremap <silent> <leader>1 1gt
 nnoremap <silent> <leader>2 2gt
 nnoremap <silent> <leader>3 3gt
@@ -104,6 +124,11 @@ nnoremap <silent> <leader>0 0gt
 nnoremap <silent> <leader><Left> :tabprevious<CR>
 nnoremap <silent> <leader><Right> :tabnext<CR>
 nnoremap <silent> <leader>! :qa!<CR>
+
+imap jj @!
+inoremap gjj <ESC>?@!<CR>2s
+imap <C-z> <ESC>ua
+imap <C-f> <ESC><leader>f
 
 """ :q quits even when in Goyo
 function! s:goyo_enter()
@@ -161,3 +186,4 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 au Syntax * RainbowParenthesesLoadChevrons
 """
+
